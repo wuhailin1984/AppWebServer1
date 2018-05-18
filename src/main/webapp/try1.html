@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<script src="js/jquery/2.0.0/jquery.min.js"></script>
+<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+
+
+<script>
+//创建table标签
+function create_element(element) {
+    return document.createElement(element);
+}
+ 
+//添加属性的函数
+function add_attributes(node,attribute,atts_value) {
+    var atts = document.createAttribute(attribute);
+    atts.nodeValue = atts_value;
+    node.setAttributeNode(atts);
+}
+ 
+//创建一行列表
+function create_tr_td(td_value_array){
+    var tr = create_element("tr");
+    // var td = null;
+   for (var key in td_value_array) {
+    //    console.log(key);
+     
+       var text_node = document.createTextNode(td_value_array[key]);
+       var td_node = create_element("td");
+       td_node.appendChild(text_node);
+       tr.appendChild(td_node);
+    
+   }
+   return tr;
+}
+ 
+ 
+var table_elent = create_element("table");
+add_attributes(table_elent,"style","border-collapse: collapse");
+ 
+var td_value_array1 = new Array("id","名称","血量","伤害");
+var td_value_array2 = new Array("1","xiaoqian","300","870");
+var td_value_array3 = new Array("2","盖伦","324","454");
+var td_value_array4 = new Array("3","皇子","54","435");
+var td_value_array5 = new Array("4","莫甘娜","45645","78");
+var tds_string = [td_value_array1,td_value_array2,td_value_array3,td_value_array4,td_value_array5];
+ 
+var tds = [];
+for (var index = 0; index < tds_string.length; index++) {
+    var t = create_tr_td(tds_string[index]);
+    if(index%2==0){
+        add_attributes(t,"style","background-color:#ccc");
+    }
+     
+    tds.push(t);
+}
+ 
+ 
+for (var index = 0; index < tds.length; index++) {
+   table_elent.appendChild(tds[index]);
+     
+}
+ 
+var div = document.getElementById("d");
+div.appendChild(table_elent);
+</script>
+
+
+<h1 align="center"> Connect your surroundings </h1>
+<div class="text-primary" id="TopLine" align="center" >Show information  </div>
+<br>
+<div align="center"> 
+	<select class="dropdown">
+   		<option>Office</option>
+   		<option>Home</option>
+   		<option>Some where</option>
+	</select>
+</div>
+
+<br>
+
+<div align="center"> <button class="btn btn-success">Check for temperature</button>
+</div>
+<br>
+<br>
+
+<div align="center"> 
+	<span><button class="btn btn-submit">Manager Rooms</button></span>
+</div>
+
+</body>
+</html>
