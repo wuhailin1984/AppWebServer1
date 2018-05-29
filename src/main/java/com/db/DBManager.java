@@ -46,7 +46,7 @@ public class DBManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("SqlManager:Connect to database successful.");
+        System.out.println("SqlManager:Connect to database successfully.");
     }
 
     //close connection to the database, close object, release handle
@@ -58,7 +58,7 @@ public class DBManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Close connection successful");
+        System.out.println("Close connection successfully");
     }
 
     // query

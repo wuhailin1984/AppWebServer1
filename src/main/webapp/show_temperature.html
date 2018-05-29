@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Temperature</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/login.css"/>
+    <script type="text/javascript" src="js/show_temperature.js"></script>
+
+</head>
+
+<body onkeydown="keyLogin(event);">
+<br>
+<br>
+<div id="Temperature" >
+<table border="1" width="1000px">
+<tr bgcolor="Gainsboro">
+    <td width="30%"><strong>Room Name</strong></td>
+    <td width="20%"><strong>Temperature</strong></td>
+    <td width="30%"><strong>Time</strong></td>
+    <td><strong>Action</strong></td>
+</tr>
+<tr >
+    <td >Office</td>
+    <td > <span id="office_temp"></span></td>
+    <td > <span id="office_temp_time" ></span></td>
+    <td align="center"><input type="button" id="btn_refresh_office" value="refresh"/></td>
+</tr>
+<tr >
+    <td >Home</td>
+    <td > <span id="home_temp"></span></td>
+    <td > <span id="home_temp_time"></span></td>
+    <td align="center"> <input type="button" id="btn_refresh_home" value="refresh"/></td>
+</tr>
+<tr >
+    <td >Some where</td>
+    <td > <span id="somewhere_temp"></span></td>
+    <td > <span id="somewhere_temp_time"></span></td>
+    <td align="center"> <input type="button" id="btn_refresh_some_where" value="refresh"/></td>
+</tr>
+
+</table>
+</div>
+</body>
+</html>

@@ -4,9 +4,16 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;  
+
+import com.db.DBManager;
 
 import com.bean.SensorTempArray;
+import com.db.DBManager;
 
 //Serves a client
 class ProcessSensorClient extends Thread{
@@ -68,7 +75,23 @@ class ProcessSensorClient extends Thread{
               
               System.out.println("tmpValue is: "+ String.format("%3.2f", tmpValue));
               dos.writeUTF(    "Server dealed a message from sensor"  );
-              dos.flush();
+              dos.flush();                           
+              
+              java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+              String currentTime = sdf.format(thisHeartBeat);
+              
+              String InsertDataSql =  "insert into temp_data values(NULL,'"+ tmpValue+ "','"+ currentTime+ "','"+ nm+ "') ";
+
+              // get database instance
+              DBManager sql = DBManager.createInstance();
+              sql.connectDB();
+
+              int ret = sql.executeUpdate(InsertDataSql);
+              if (ret != 0) {
+                  sql.closeDB();
+              }
+              sql.closeDB();
+              
               }
 
         } catch (IOException e) {

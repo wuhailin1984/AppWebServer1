@@ -50,7 +50,9 @@ public class LogLet extends HttpServlet {
         // validation
         boolean loged = serv.login(username, password);
         if (loged) {
-            System.out.print("Succss");
+            System.out.print("Successed");
+            response.sendRedirect("show_temperature.html");
+            /*
             request.getSession().setAttribute("username", username);
             
             // send information to clients
@@ -63,7 +65,7 @@ public class LogLet extends HttpServlet {
             //out.print("logined in");
             out.flush();
             out.close();
-            
+            */
         } else {
             System.out.print("Failed");
             
@@ -97,7 +99,10 @@ public class LogLet extends HttpServlet {
         // validation
         boolean loged = serv.login(username, password);
         if (loged) {
-            System.out.print("Succss");
+            System.out.print("successed");
+            
+            response.sendRedirect("show_temperature.html");
+            /*
             request.getSession().setAttribute("username", username);
             
             // send information to clients
@@ -110,6 +115,7 @@ public class LogLet extends HttpServlet {
             //out.print("logined in");
             out.flush();
             out.close();
+            */
             
         } else {
             System.out.print("Failed");
@@ -118,7 +124,7 @@ public class LogLet extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
-            out.print("Failed");
+            out.print("Failed to login");
             //out.print("Username:" + username);
             //out.print("Password:" + password);
             //out.print("failed in logging");

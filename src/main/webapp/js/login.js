@@ -1,5 +1,5 @@
 /**
- * Created by Kay on 2016/3/8.
+ * Created by Hailin on 2018/5/8.
  */
 
 function keyLogin(event) {
@@ -15,7 +15,7 @@ function keyLogin(event) {
     code = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
 
     if ( code == 13)  //13 is the key value of Enter
-        document.getElementById("btn_login").click();  //调用登录按钮的登录事件
+        document.getElementById("btn_login").click();  
 }
 
 
