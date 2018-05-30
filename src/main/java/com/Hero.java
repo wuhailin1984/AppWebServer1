@@ -62,9 +62,7 @@ public class Hero {
            // 把数据写入到输出流
            fos.write(data);
            // 关闭输出流
-           fos.close(); 
-                        
-           
+           fos.close();                                   
         } catch(IOException e) {
            
            // if any error occurs

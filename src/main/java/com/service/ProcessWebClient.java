@@ -3,6 +3,7 @@ package com.service;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -33,9 +34,9 @@ public class ProcessWebClient{
     //收到消息时执行
     @OnMessage
     public void onMessage(String message, Session session) throws IOException {
-        //session.getBasicRemote().sendText("收到 "+this.userId+" 的消息 "); //repose to the client
+        //session.getBasicRemote().sendText("收到 "+this.userId+" 的消息 "); //response to the client
     	System.out.println("received sth from web client");
-    	if( message.equals("Sensor1") ||message.equals("Sensor2")  ) {
+    	if( message.equals("Sensor1") ||message.equals("Sensor2") ||message.equals("Sensor3") ) {
     		String nm= message;
     		DBManager sql = DBManager.createInstance();
     		sql.connectDB();  
@@ -46,11 +47,33 @@ public class ProcessWebClient{
     				
     				String data=rs.getString("value_temp_data");  
     				String dataTime=rs.getString("time_temp_data");
-    				session.getBasicRemote().sendText(data+"***"+dataTime+nm); //repose to the client
-    				System.out.println(data+"***"+dataTime+nm);			 
-    				}
+    				Date thisTime=new Date();
+    				java.text.SimpleDateFormat sdf= new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    				Date date;
+    				date = (Date) sdf.parse(dataTime); 
+                	long diff=thisTime.getTime() - date.getTime();
+                	if(  diff < 10000)         		
+                	{
+                		//session.getBasicRemote().sendText(data+"***"+dataTime+nm); //response to the client
+        				//System.out.println(data+"***"+dataTime+nm);
+                		session.getBasicRemote().sendText(data+nm +"RealTempFlag"); //response to the client
+                		session.getBasicRemote().sendText(data+" degree "+dataTime+nm);
+                		System.out.println(data+nm );
+                	}
+                	else 
+                	{
+                		session.getBasicRemote().sendText("Temperature data expired" +nm+"RealTempFlag"); //response to the client
+                		session.getBasicRemote().sendText(data+" degree "+dataTime+nm);
+                		System.out.println("Temperature data expired"+nm );	
+                	}						 
+    			}
+    			else {
+    				session.getBasicRemote().sendText( "No data for this rum"+nm+"RealTempFlag" ); //response to the client
+    				session.getBasicRemote().sendText("No data for this rum"+nm);
+    				System.out.println( "No data for this rum"+nm );
+    			}
     			sql.closeDB();
-    		} 	catch (SQLException e) {
+    		} 	catch (Exception e) {
     				e.printStackTrace();
     			} 
     		
