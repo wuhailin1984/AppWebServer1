@@ -26,8 +26,8 @@ function keyLogin(event) {
 window.onload = function () {
 	document.getElementById("office_temp").innerHTML="11";
 	
-	//var ws = new WebSocket("ws://35.204.196.49:8080/AppWebServer1/websocketTemp");  //GCP
-	var ws = new WebSocket("ws://localhost:8081/AppWebServer1/websocketTemp");  
+	var ws = new WebSocket("ws://35.204.196.49:8080/AppWebServer1/websocketTemp");  //GCP
+	//var ws = new WebSocket("ws://localhost:8081/AppWebServer1/websocketTemp");  
 	if (typeof ws == "undefined") {
 		document.getElementById("office_temp").innerHTML="22";
 	}

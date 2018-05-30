@@ -52,7 +52,7 @@ public class ProcessWebClient{
     				Date date;
     				date = (Date) sdf.parse(dataTime); 
                 	long diff=thisTime.getTime() - date.getTime();
-                	if(  diff < 10000)         		
+                	if(  Math.abs(diff) < 10000)         		
                 	{
                 		//session.getBasicRemote().sendText(data+"***"+dataTime+nm); //response to the client
         				//System.out.println(data+"***"+dataTime+nm);
